@@ -3,6 +3,7 @@ import requests
 def prompting(prompt):
     url = 'http://localhost:11434/api/generate'
     payload = prompt
+#exmaple of the payload :
     #{'model' : 'tinyllama' , 'prompt' : prompt, 'stream' : False}
 
     resp = requests.post(url , json=payload, stream=False)
