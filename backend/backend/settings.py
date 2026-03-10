@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'communication',
-    'rest_framework'
+    'rest_framework',
+    'User'
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# changing the authentication model by this line (THIS IS FOR U SO THAT U DONT DO SOMETHING STUPID)
+AUTH_USER_MODEL = 'User.Users'
