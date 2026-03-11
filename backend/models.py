@@ -75,3 +75,15 @@ class UsageStats(models.Model):
         db_table = 'usage_stats'
 
 
+class Users(models.Model):
+    username = models.CharField(unique=True, max_length=50)
+    email = models.CharField(unique=True, max_length=255)
+    password = models.TextField()
+    is_active = models.IntegerField(blank=True, null=True)
+    created_at = models.DateTimeField(blank=True, null=True)
+    userinputid = models.CharField(db_column='UserInputID', unique=True, max_length=10)  # Field name made lowercase.
+    useroutputid = models.CharField(db_column='UserOutputID', unique=True, max_length=10)  # Field name made lowercase.
+
+    class Meta:
+        managed = True
+        db_table = 'users'
