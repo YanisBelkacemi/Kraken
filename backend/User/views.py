@@ -43,7 +43,8 @@ class login_view(APIView):
             token, created = Token.objects.get_or_create(user=user)
             return Response({
                 'token': token.key,
-                'username': user.username
+                'username': user.username,
+                'InputID' : user.UserInputID
             })
         return Response(serializer.errors, status=400)
 @method_decorator(csrf_exempt , name='dispatch')    

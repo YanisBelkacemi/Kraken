@@ -1,19 +1,24 @@
 from rest_framework import serializers
 from .models import Users
 from django.contrib.auth import authenticate
+
+from nanoid import generate
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Users
-        fields = ['username' , 'password' , 'UserInputID' ,'UserOutputID' ]
+        fields = ['username' , 'password' ]
         extra_kwargs = {'password': {'write_only': True}}
     #password hashing 
     def create(self , validated_data):
         password = validated_data.pop('password')
+        validated_data['UserInputID'] = generate(size=10)
+        validated_data['UserOutputID'] = generate(size=10) 
         user = Users(**validated_data)
         user.set_password(password)
         user.is_active = True #login authentication method to work in the login 
         user.save()
         return user 
+
     
 
 class LoginSerializer(serializers.Serializer):
